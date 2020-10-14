@@ -32,7 +32,7 @@ public class Task {
     /**
      * The unique identifier of the project associated to the task
      */
-    @ColumnInfo(name = "projectid", index = true)
+    @ColumnInfo(name = "projectId", index = true)
     private long projectId;
 
     /**
