@@ -33,7 +33,7 @@ public class Task {
      * The unique identifier of the project associated to the task
      */
     @ColumnInfo(name = "projectId", index = true)
-    private long projectId;
+    public long projectId;
 
     /**
      * The name of the task
@@ -46,7 +46,7 @@ public class Task {
     /**
      * The timestamp when the task has been created
      */
-    private long creationTimestamp;
+    public long creationTimestamp;
 
     /**
      * Instantiates a new Task.
@@ -127,6 +127,8 @@ public class Task {
     private void setCreationTimestamp(long creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
+
+
 
     /**
      * Comparator to sort task from A to Z
