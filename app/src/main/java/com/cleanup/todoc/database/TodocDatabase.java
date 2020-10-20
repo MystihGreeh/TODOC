@@ -16,7 +16,7 @@ import javax.security.auth.callback.Callback;
 
 import static android.arch.persistence.room.Room.databaseBuilder;
 
-@Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false)
+@Database(entities = {Project.class, Task.class}, version = 1, exportSchema = false)
 public abstract class TodocDatabase extends RoomDatabase {
 
     // --- SINGLETON ---
@@ -31,8 +31,8 @@ public abstract class TodocDatabase extends RoomDatabase {
         if (INSTANCE == null){
             synchronized (TodocDatabase.class){
                 if (INSTANCE == null){
-                    INSTANCE = databaseBuilder(context.getApplicationContext(),
-                            TodocDatabase.class, "MyDatabase.db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            TodocDatabase.class, "TodocDatabase.db")
                             .addCallback(prepopulatedDatabase())
                             .build();
                 }
@@ -55,7 +55,7 @@ public abstract class TodocDatabase extends RoomDatabase {
                     contentValues.put("id", project.getId());
                     contentValues.put("name", project.getName());
                     contentValues.put("color", project.getColor());
-                    db.insert("project", OnConflictStrategy.IGNORE, contentValues);
+                    db.insert("projects", OnConflictStrategy.IGNORE, contentValues);
                 }
             }
 

@@ -47,6 +47,9 @@ public class Project {
         this.color = color;
     }
 
+    public Project() {
+    }
+
     /**
      * Returns all the projects of the application.
      *
@@ -77,6 +80,8 @@ public class Project {
         return null;
     }
 
+    // --- GETTER AND SETTER---
+
     /**
      * Returns the unique identifier of the project.
      *
@@ -85,10 +90,6 @@ public class Project {
     public long getId() {
         return id;
     }
-
-
-    // --- SETTER ---
-
     public void setId(long id) { this.id = id; }
 
 
@@ -101,7 +102,6 @@ public class Project {
     public String getName() {
         return name;
     }
-
     public void setName(@NonNull String name) { this.name = name; }
 
 
@@ -114,7 +114,6 @@ public class Project {
     public int getColor() {
         return color;
     }
-
     public void setColor(int color) { this.color = color; }
 
     @Override

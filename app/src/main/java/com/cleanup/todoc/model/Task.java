@@ -9,15 +9,19 @@ import android.support.annotation.Nullable;
 
 import java.util.Comparator;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 /**
  * <p>Model for the tasks of the application.</p>
  *
  * @author Gaëtan HERFRAY
  */
 
-@Entity(foreignKeys = @ForeignKey(entity = Project.class,
+@Entity(tableName = "tasks",
+        foreignKeys = @ForeignKey(entity = Project.class,
         parentColumns = "id",
-        childColumns = "projectId"))
+        childColumns = "projectId",
+        onDelete = CASCADE))
 
 
 public class Task {
@@ -25,9 +29,11 @@ public class Task {
      * The unique identifier of the task
      */
     @PrimaryKey(autoGenerate = true)
-    private long id;
+    public long id;
 
 
+    public Task() {
+    }
 
     /**
      * The unique identifier of the project associated to the task
@@ -41,7 +47,7 @@ public class Task {
     // Suppress warning because setName is called in constructor
     @SuppressWarnings("NullableProblems")
     @NonNull
-    private String name;
+    public String name;
 
     /**
      * The timestamp when the task has been created
@@ -51,13 +57,12 @@ public class Task {
     /**
      * Instantiates a new Task.
      *
-     * @param id                the unique identifier of the task to set
+
      * @param projectId         the unique identifier of the project associated to the task to set
      * @param name              the name of the task to set
      * @param creationTimestamp the timestamp when the task has been created to set
      */
-    public Task(long id, long projectId, @NonNull String name, long creationTimestamp) {
-        this.setId(id);
+    public Task(long projectId, @NonNull String name, long creationTimestamp) {
         this.setProjectId(projectId);
         this.setName(name);
         this.setCreationTimestamp(creationTimestamp);

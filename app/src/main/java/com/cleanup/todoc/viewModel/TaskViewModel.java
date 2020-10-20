@@ -29,7 +29,7 @@ public class TaskViewModel extends ViewModel {
         this.executor = executor;
     }
 
-    public void init(long projectId) {
+    public void init() {
         if (currentProject != null) {
             return;
         }
