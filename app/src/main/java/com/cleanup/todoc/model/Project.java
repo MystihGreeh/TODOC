@@ -85,6 +85,8 @@ public class Project {
     public long getId() {
         return id;
     }
+
+
     // --- SETTER ---
 
     public void setId(long id) { this.id = id; }

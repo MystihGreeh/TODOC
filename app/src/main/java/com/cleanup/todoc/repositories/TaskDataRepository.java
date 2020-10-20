@@ -11,6 +11,7 @@ import java.util.List;
 public class TaskDataRepository {
 
     private final TaskDao taskDao;
+    private Task task;
 
     public TaskDataRepository( TaskDao taskDao){
         this.taskDao = taskDao;
@@ -18,12 +19,12 @@ public class TaskDataRepository {
 
 
     // --- GET ---
-    public LiveData<List<Task>> getTask(long projectId) {return this.taskDao.getTask(projectId);}
+    public LiveData<List<Task>> getTask() {return this.taskDao.getTasks();}
 
     // --- CREATE ---
     public void creatTask(Task task) {taskDao.insertTask(task);}
 
     // --- DELETE ---
-    public void deleteTask(long taskId) {taskDao.deleteTask(taskId);}
+    public void deleteTask() {taskDao.deleteTask(task);}
 
 }

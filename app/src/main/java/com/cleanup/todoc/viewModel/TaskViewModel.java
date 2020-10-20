@@ -21,7 +21,7 @@ public class TaskViewModel extends ViewModel {
 
     // DATA
     @Nullable
-    private LiveData<Project> currentProject;
+    private LiveData<List<Project>> currentProject;
 
     public TaskViewModel(TaskDataRepository taskDataSource, ProjectDataRepository projectDataSource, Executor executor) {
         this.taskDataSource = taskDataSource;
@@ -30,36 +30,23 @@ public class TaskViewModel extends ViewModel {
     }
 
     public void init(long projectId) {
-        if (this.currentProject != null) {
+        if (currentProject != null) {
             return;
         }
-        currentProject = projectDataSource.getProject(projectId);
+        currentProject = projectDataSource.getProjects();
     }
 
-    // -------------
-    // FOR USER
-    // -------------
+    // FOR PROJECT
 
-    public LiveData<Project> getProject(long projectId) { return this.currentProject;  }
+    @Nullable
+    public LiveData<List<Project>> getProjects() { return currentProject; }
 
-    // -------------
-    // FOR ITEM
-    // -------------
+    // FOR TASK
 
-    public LiveData<List<Task>> getTask(long projectId) {
-        return taskDataSource.getTask(projectId);
-    }
+    public LiveData<List<Task>> getTasks() { return taskDataSource.getTask(); }
 
-    public void createTask(Task task) {
-        executor.execute(() -> {
-            taskDataSource.creatTask(task);
-        });
-    }
+    public void createTask(Task task) { executor.execute(() -> taskDataSource.creatTask(task)); }
 
-    public void deleteTask(long taskId) {
-        executor.execute(() -> {
-            taskDataSource.deleteTask(taskId);
-        });
-    }
+    public void deleteTask(Task task) { executor.execute(taskDataSource::deleteTask); }
 
 }
