@@ -2,7 +2,6 @@ package com.cleanup.todoc.repositories;
 
 import android.arch.lifecycle.LiveData;
 
-import com.cleanup.todoc.database.ProjectDao;
 import com.cleanup.todoc.database.TaskDao;
 import com.cleanup.todoc.model.Task;
 
@@ -25,6 +24,6 @@ public class TaskDataRepository {
     public void creatTask(Task task) {taskDao.insertTask(task);}
 
     // --- DELETE ---
-    public void deleteTask() {taskDao.deleteTask(task);}
+    public void deleteTask(Task task) {taskDao.deleteTask(task);}
 
 }
